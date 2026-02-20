@@ -45,7 +45,7 @@ services:
     depends_on:
       postgres-primary:
         condition: service_healthy
-    entrypoint: ["/bin/bash", "/init-replica.sh"]
+    entrypoint: ["/bin/bash", "-c", "cp /init-replica.sh /tmp/init-replica.sh && sed -i 's/\r$//' /tmp/init-replica.sh && /bin/bash /tmp/init-replica.sh"]
 
   valkey:
     image: valkey/valkey:8.0
@@ -56,6 +56,79 @@ services:
       - travelhub-net
     healthcheck:
       test: ["CMD", "valkey-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"    # AMQP
+      - "15672:15672"  # Management UI
+    networks:
+      - travelhub-net
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # API REST (microservicio - Flask/Gunicorn)
+  # Nota: para escalado múltiple, usa docker-compose --scale api=3
+  api:
+    build: ./api
+    # Sin container_name para permitir escalado (docker-compose --scale api=3)
+    environment:
+      DB_HOST: postgres-primary
+      DB_PORT: 5432
+      DB_NAME: travelhub
+      DB_USER: postgres
+      DB_PASSWORD: postgres_pass
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_PASS: guest
+    networks:
+      - travelhub-net
+    depends_on:
+      postgres-primary:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  # Event Consumer - Microservicio para procesar eventos asincronos
+  event-consumer:
+    build: ./api
+    container_name: event-consumer
+    command: python -m rabbitmq.consumer
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_PASS: guest
+    networks:
+      - travelhub-net
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  # API Gateway / Load Balancer (NGINX)
+  # Enruta tráfico HTTP/HTTPS a instancias del API
+  api-gateway:
+    build: ./nginx
+    container_name: api-gateway
+    ports:
+      - "80:80"
+    networks:
+      - travelhub-net
+    depends_on:
+      - api
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
       interval: 10s
       timeout: 5s
       retries: 5

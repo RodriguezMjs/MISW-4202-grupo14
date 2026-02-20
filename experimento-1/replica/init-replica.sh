@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
 echo "Esperando que el Primary esté listo..."
 until pg_isready -h postgres-primary -p 5432 -U postgres; do
