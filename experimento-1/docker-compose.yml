@@ -69,8 +69,7 @@ services:
       PGPOOL_ADMIN_USERNAME: admin
       PGPOOL_ADMIN_PASSWORD: admin_pass
     volumes:
-      - ./pgpool/pgpool.conf:/opt/bitnami/pgpool/conf/pgpool.conf:ro
-      - ./pgpool/pool_hba.conf:/opt/bitnami/pgpool/conf/pool_hba.conf:ro
+      - ./pgpool/pgpool.conf:/opt/bitnami/pgpool/conf/pgpool.conf
     ports:
       - "5434:5432"
     networks:
@@ -189,7 +188,7 @@ services:
       VALKEY_PORT: 6379
       CACHE_TTL: 30
     ports:
-      - "5000:5000" # Accesible local desde localhost:5000
+      - "5001:5000" # Accesible local desde localhost:5000
     networks:
       - travelhub-net
     depends_on:
