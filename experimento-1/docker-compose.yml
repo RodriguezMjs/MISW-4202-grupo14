@@ -45,7 +45,12 @@ services:
     depends_on:
       postgres-primary:
         condition: service_healthy
-    entrypoint: ["/bin/bash", "-c", "cp /init-replica.sh /tmp/init-replica.sh && sed -i 's/\r$//' /tmp/init-replica.sh && /bin/bash /tmp/init-replica.sh"]
+    entrypoint:
+      [
+        "/bin/bash",
+        "-c",
+        "cp /init-replica.sh /tmp/init-replica.sh && sed -i 's/\r$//' /tmp/init-replica.sh && /bin/bash /tmp/init-replica.sh",
+      ]
   #Balancea las cargas entre BD primary y réplica
   pgpool:
     image: bitnami/pgpool:4
@@ -67,7 +72,7 @@ services:
       - ./pgpool/pgpool.conf:/opt/bitnami/pgpool/conf/pgpool.conf:ro
       - ./pgpool/pool_hba.conf:/opt/bitnami/pgpool/conf/pool_hba.conf:ro
     ports:
-      - "5434:5432" 
+      - "5434:5432"
     networks:
       - travelhub-net
     depends_on:
@@ -96,8 +101,8 @@ services:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
     ports:
-      - "5672:5672"    # AMQP
-      - "15672:15672"  # Management UI
+      - "5672:5672" # AMQP
+      - "15672:15672" # Management UI
     networks:
       - travelhub-net
     healthcheck:
@@ -171,27 +176,27 @@ services:
   # CACHE FALLBACK MOCK - demuestra la táctica de cache
   # Lee desde postgres-replica, usa valkey como cache
   # comentado mientras se termina el mock
-  # cache-fallback-mock:
-  #   build: ./cache-fallback-mock
-  #   container_name: cache-fallback-mock
-  #   environment:
-  #     DB_HOST: postgres-replica
-  #     DB_PORT: 5432
-  #     DB_NAME: travelhub
-  #     DB_USER: postgres
-  #     DB_PASSWORD: postgres_pass
-  #     VALKEY_HOST: valkey
-  #     VALKEY_PORT: 6379
-  #     CACHE_TTL: 30
-  #   ports:
-  #     - "5000:5000" # Accesible local desde localhost:5000
-  #   networks:
-  #     - travelhub-net
-  #   depends_on:
-  #     postgres-replica:
-  #       condition: service_started
-  #     valkey:
-  #       condition: service_healthy
+  cache-fallback-mock:
+    build: ./cache-fallback-mock
+    container_name: cache-fallback-mock
+    environment:
+      DB_HOST: postgres-replica
+      DB_PORT: 5432
+      DB_NAME: travelhub
+      DB_USER: postgres
+      DB_PASSWORD: postgres_pass
+      VALKEY_HOST: valkey
+      VALKEY_PORT: 6379
+      CACHE_TTL: 30
+    ports:
+      - "5000:5000" # Accesible local desde localhost:5000
+    networks:
+      - travelhub-net
+    depends_on:
+      postgres-replica:
+        condition: service_started
+      valkey:
+        condition: service_healthy
 
 networks:
   travelhub-net:
