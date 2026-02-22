@@ -53,7 +53,7 @@ services:
       ]
   #Balancea las cargas entre BD primary y réplica
   pgpool:
-    image: bitnami/pgpool:4
+    image: bitnamilegacy/pgpool:4.6.3
     container_name: pgpool
     environment:
       PGPOOL_POSTGRES_USERNAME: postgres
