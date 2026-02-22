@@ -3,6 +3,7 @@ from config import DATABASE_URL
 from utils.db import init_db, get_engine
 from blueprints.items import items_bp
 from blueprints.health import health_bp
+from blueprints.payments import bp as payments_bp
 
 app = Flask(__name__)
 
@@ -13,7 +14,7 @@ init_db(engine)
 # Register Blueprints
 app.register_blueprint(health_bp, url_prefix="/api/v1")
 app.register_blueprint(items_bp, url_prefix="/api/v1")
-
+app.register_blueprint(payments_bp, url_prefix="/api")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
