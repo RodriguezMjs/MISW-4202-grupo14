@@ -98,16 +98,19 @@ docker compose down -v
 
 ## Resultados obtenidos
 
-Fecha de ejecucion: 2026-02-19
+| Escenario                               | Source | Ejecucion inicial | Ejecucion en video | Resultado  |
+|-----------------------------------------|--------|-------------------|--------------------|------------|
+| Cache miss — primera request            | database | 16.64ms         | 28.05ms            | OK         |
+| Cache hit — segunda request             | cache    | 1.51ms          | 1.01ms             | OK         |
+| Cache fallback — replica caida          | cache    | 1.40ms          | 1.30ms             | OK         |
+| Falla total — replica caida + sin cache | none     | —               | —                  | OK (503)   |
 
-| Escenario                              | Source          | Tiempo   | Resultado |
-|----------------------------------------|-----------------|----------|-----------|
-| Cache miss — primera request           | database        | 16.64ms  | OK        |
-| Cache hit — segunda request            | cache           | 1.51ms   | OK        |
-| Cache fallback — replica caida         | cache           | 1.40ms   | OK        |
-| Falla total — replica caida + sin cache| none            | —        | OK (503)  |
+Los tiempos de cache miss varian segun la carga del sistema (16ms - 28ms) debido a la cantidad
+de contenedores corriendo simultaneamente. Los tiempos de cache hit se mantienen estables
+por debajo de 2ms independientemente de la carga.
 
-**El cache es 11x mas rapido que la consulta directa a BD.**
+**Ejecucion inicial: el cache es 11x mas rapido que la BD directa.**
+**Ejecucion en video: el cache es 27.8x mas rapido que la BD directa.**
 
 ---
 
