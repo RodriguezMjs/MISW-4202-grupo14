@@ -1,0 +1,108 @@
+gateway  | [2026-02-23 03:51:54 +0000] [1] [INFO] Starting gunicorn 22.0.0
+gateway  | [2026-02-23 03:51:54 +0000] [1] [INFO] Listening at: http://0.0.0.0:7000 (1)
+gateway  | [2026-02-23 03:51:54 +0000] [1] [INFO] Using worker: gthread
+gateway  | [2026-02-23 03:51:54 +0000] [7] [INFO] Booting worker with pid: 7
+gateway  | [2026-02-23 03:51:54 +0000] [8] [INFO] Booting worker with pid: 8
+gateway  | [2026-02-23 03:53:37,336] WARNING in app: [CB] failure: ConnectionError: HTTPConnectionPool(host='toxiproxy', port=8666): Max retries exceeded with url: /items (Caused by NewConnectionError("HTTPConnection(host='toxiproxy', port=8666): Failed to establish a new connection: [Errno 111] Connection refused"))
+gateway  | [2026-02-23 03:53:37,336] ERROR in app: Exception on /api/items [GET]
+gateway  | Traceback (most recent call last):
+gateway  |   File "/usr/local/lib/python3.11/site-packages/urllib3/connection.py", line 204, in _new_conn
+gateway  |     sock = connection.create_connection(
+gateway  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/urllib3/util/connection.py", line 85, in create_connection
+gateway  |     raise err
+gateway  |   File "/usr/local/lib/python3.11/site-packages/urllib3/util/connection.py", line 73, in create_connection
+gateway  |     sock.connect(sa)
+gateway  | ConnectionRefusedError: [Errno 111] Connection refused
+gateway  | 
+gateway  | The above exception was the direct cause of the following exception:
+gateway  | 
+gateway  | Traceback (most recent call last):
+gateway  |   File "/usr/local/lib/python3.11/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+gateway  |     response = self._make_request(
+gateway  |                ^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/urllib3/connectionpool.py", line 493, in _make_request
+gateway  |     conn.request(
+gateway  |   File "/usr/local/lib/python3.11/site-packages/urllib3/connection.py", line 500, in request
+gateway  |     self.endheaders()
+gateway  |   File "/usr/local/lib/python3.11/http/client.py", line 1298, in endheaders
+gateway  |     self._send_output(message_body, encode_chunked=encode_chunked)
+gateway  |   File "/usr/local/lib/python3.11/http/client.py", line 1058, in _send_output
+gateway  |     self.send(msg)
+gateway  |   File "/usr/local/lib/python3.11/http/client.py", line 996, in send
+gateway  |     self.connect()
+gateway  |   File "/usr/local/lib/python3.11/site-packages/urllib3/connection.py", line 331, in connect
+gateway  |     self.sock = self._new_conn()
+gateway  |                 ^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/urllib3/connection.py", line 219, in _new_conn
+gateway  |     raise NewConnectionError(
+gateway  | urllib3.exceptions.NewConnectionError: HTTPConnection(host='toxiproxy', port=8666): Failed to establish a new connection: [Errno 111] Connection refused
+gateway  | 
+gateway  | The above exception was the direct cause of the following exception:
+gateway  | 
+gateway  | Traceback (most recent call last):
+gateway  |   File "/usr/local/lib/python3.11/site-packages/requests/adapters.py", line 667, in send
+gateway  |     resp = conn.urlopen(
+gateway  |            ^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+gateway  |     retries = retries.increment(
+gateway  |               ^^^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/urllib3/util/retry.py", line 535, in increment
+gateway  |     raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+gateway  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gateway  | urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='toxiproxy', port=8666): Max retries exceeded with url: /items (Caused by NewConnectionError("HTTPConnection(host='toxiproxy', port=8666): Failed to establish a new connection: [Errno 111] Connection refused"))
+gateway  | 
+gateway  | During handling of the above exception, another exception occurred:
+gateway  | 
+gateway  | Traceback (most recent call last):
+gateway  |   File "/app/app.py", line 95, in proxy_items
+gateway  |     resp = breaker_api.call(_call)
+gateway  |            ^^^^^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/pybreaker/__init__.py", line 224, in call
+gateway  |     return self.state.call(func, *args, **kwargs)
+gateway  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/pybreaker/__init__.py", line 645, in call
+gateway  |     self._handle_error(e)
+gateway  |   File "/usr/local/lib/python3.11/site-packages/pybreaker/__init__.py", line 620, in _handle_error
+gateway  |     raise exc
+gateway  |   File "/usr/local/lib/python3.11/site-packages/pybreaker/__init__.py", line 640, in call
+gateway  |     ret = func(*args, **kwargs)
+gateway  |           ^^^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/app/app.py", line 93, in _call
+gateway  |     return requests.get(upstream_url, timeout=UPSTREAM_TIMEOUT_SEC)
+gateway  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/requests/api.py", line 73, in get
+gateway  |     return request("get", url, params=params, **kwargs)
+gateway  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/requests/api.py", line 59, in request
+gateway  |     return session.request(method=method, url=url, **kwargs)
+gateway  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/requests/sessions.py", line 589, in request
+gateway  |     resp = self.send(prep, **send_kwargs)
+gateway  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/requests/sessions.py", line 703, in send
+gateway  |     r = adapter.send(request, **kwargs)
+gateway  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/requests/adapters.py", line 700, in send
+gateway  |     raise ConnectionError(e, request=request)
+gateway  | requests.exceptions.ConnectionError: HTTPConnectionPool(host='toxiproxy', port=8666): Max retries exceeded with url: /items (Caused by NewConnectionError("HTTPConnection(host='toxiproxy', port=8666): Failed to establish a new connection: [Errno 111] Connection refused"))
+gateway  | 
+gateway  | During handling of the above exception, another exception occurred:
+gateway  | 
+gateway  | Traceback (most recent call last):
+gateway  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1473, in wsgi_app
+gateway  |     response = self.full_dispatch_request()
+gateway  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 882, in full_dispatch_request
+gateway  |     rv = self.handle_user_exception(e)
+gateway  |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 880, in full_dispatch_request
+gateway  |     rv = self.dispatch_request()
+gateway  |          ^^^^^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 865, in dispatch_request
+gateway  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+gateway  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gateway  |   File "/app/app.py", line 117, in proxy_items
+gateway  |     "breaker": breaker_api.current_state.name,
+gateway  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+gateway  | AttributeError: 'str' object has no attribute 'name'

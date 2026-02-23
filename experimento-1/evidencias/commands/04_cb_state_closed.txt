@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+Server: nginx/1.29.5
+Date: Mon, 23 Feb 2026 03:53:13 GMT
+Content-Type: application/json
+Content-Length: 88
+Connection: keep-alive
+
+{"api_breaker":"closed","fail_max":5,"payment_breaker":"closed","reset_timeout_sec":15}

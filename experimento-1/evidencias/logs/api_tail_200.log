@@ -1,0 +1,7 @@
+api-1  | [2026-02-23 03:51:54 +0000] [1] [INFO] Starting gunicorn 20.1.0
+api-1  | [2026-02-23 03:51:54 +0000] [1] [INFO] Listening at: http://0.0.0.0:5000 (1)
+api-1  | [2026-02-23 03:51:54 +0000] [1] [INFO] Using worker: sync
+api-1  | [2026-02-23 03:51:54 +0000] [7] [INFO] Booting worker with pid: 7
+api-1  | [2026-02-23 03:51:54 +0000] [8] [INFO] Booting worker with pid: 8
+api-1  | [2026-02-23 03:51:54 +0000] [9] [INFO] Booting worker with pid: 9
+api-1  | [2026-02-23 03:51:54 +0000] [10] [INFO] Booting worker with pid: 10

@@ -1,0 +1,47 @@
+[?1049h[22;0;0t[24;1H[?1h=
+ client_addr |   state   | sync_state 
+-------------+-----------+------------
+ 172.23.0.7  | streaming | async
+(1 row)
+
+[7m(END)[27m[K
+[K
+[K[7m(END)[27m[K
+[K
+[K[7m(END)[27m[K
+[K
+[K[7m(END)[27m[K[H[2J[H[H[2J[H client_addr |   state   | sync_state 
+-------------+-----------+------------
+ 172.23.0.7  | streaming | async
+(1 row)
+
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[1m~[0m
+[7m(END)[27m[K
+[K[7m(END)[27m[K
+[K-
+[Klog file: [Kdd
+[K
+[K[7m(END)[27m[K
+[K
+[K[7m(END)[27m[K
+[K
+[K[7m(END)[27m[K
+[K
+[K[7m(END)[27m[K
