@@ -8,4 +8,6 @@ COPY blueprints ./blueprints
 COPY utils ./utils
 COPY rabbitmq ./rabbitmq
 EXPOSE 5000
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
+COPY wait_for_db.py ./
+RUN chmod +x ./wait_for_db.py
+ENTRYPOINT ["python", "./wait_for_db.py"]

@@ -139,6 +139,8 @@ services:
       pgpool:
         condition: service_started
 
+  
+
   # Event Consumer - Microservicio para procesar eventos asincronos
   event-consumer:
     build: ./api
