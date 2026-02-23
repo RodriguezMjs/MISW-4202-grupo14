@@ -176,6 +176,8 @@ services:
       - toxiproxy
       - api
 
+  
+
   # Event Consumer - Microservicio para procesar eventos asincronos
   event-consumer:
     build: ./api
