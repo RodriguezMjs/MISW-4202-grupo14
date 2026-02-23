@@ -1,0 +1,16 @@
+---- req 1 ----
+status:404 time_total:0.011404
+---- req 2 ----
+status:404 time_total:0.007299
+---- req 3 ----
+status:404 time_total:0.006694
+---- req 4 ----
+status:404 time_total:0.007559
+---- req 5 ----
+status:404 time_total:0.006967
+---- req 6 ----
+status:404 time_total:0.006286
+---- req 7 ----
+status:404 time_total:0.007207
+---- req 8 ----
+status:404 time_total:0.006605

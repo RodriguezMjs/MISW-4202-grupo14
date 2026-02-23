@@ -1,0 +1,5 @@
+gateway  | [2026-02-23 04:09:06 +0000] [1] [INFO] Starting gunicorn 22.0.0
+gateway  | [2026-02-23 04:09:06 +0000] [1] [INFO] Listening at: http://0.0.0.0:7000 (1)
+gateway  | [2026-02-23 04:09:06 +0000] [1] [INFO] Using worker: gthread
+gateway  | [2026-02-23 04:09:06 +0000] [7] [INFO] Booting worker with pid: 7
+gateway  | [2026-02-23 04:09:06 +0000] [8] [INFO] Booting worker with pid: 8

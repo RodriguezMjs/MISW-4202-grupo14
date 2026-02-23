@@ -1,0 +1,13 @@
+NAME                  IMAGE                               COMMAND                  SERVICE               CREATED         STATUS                   PORTS
+api-gateway           experimento-1-api-gateway           "/docker-entrypoint.ÔÇª"   api-gateway           7 minutes ago   Up 7 minutes (healthy)   0.0.0.0:80->80/tcp, [::]:80->80/tcp
+cache-fallback-mock   experimento-1-cache-fallback-mock   "gunicorn -b 0.0.0.0ÔÇª"   cache-fallback-mock   7 minutes ago   Up 7 minutes             0.0.0.0:5001->5000/tcp, [::]:5001->5000/tcp
+event-consumer        experimento-1-event-consumer        "python -m rabbitmq.ÔÇª"   event-consumer        7 minutes ago   Up 7 minutes             5000/tcp
+exp1-rabbitmq         rabbitmq:3.11-management            "docker-entrypoint.sÔÇª"   rabbitmq              7 minutes ago   Up 7 minutes (healthy)   0.0.0.0:5672->5672/tcp, [::]:5672->5672/tcp, 0.0.0.0:15672->15672/tcp, [::]:15672->15672/tcp
+exp1-valkey           valkey/valkey:8.0                   "docker-entrypoint.sÔÇª"   valkey                7 minutes ago   Up 7 minutes (healthy)   0.0.0.0:6379->6379/tcp, [::]:6379->6379/tcp
+experimento-1-api-1   experimento-1-api                   "gunicorn -w 4 -b 0.ÔÇª"   api                   7 minutes ago   Up 7 minutes             5000/tcp
+gateway               experimento-1-gateway               "gunicorn -b 0.0.0.0ÔÇª"   gateway               7 minutes ago   Up 7 minutes             7000/tcp
+payment-mock          experimento-1-payment-mock          "gunicorn -b 0.0.0.0ÔÇª"   payment-mock          7 minutes ago   Up 7 minutes             0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+pgpool                bitnamilegacy/pgpool:4.6.3          "/opt/bitnami/scriptÔÇª"   pgpool                7 minutes ago   Up 7 minutes (healthy)   0.0.0.0:5434->5432/tcp, [::]:5434->5432/tcp
+postgres-primary      postgres:14                         "docker-entrypoint.sÔÇª"   postgres-primary      7 minutes ago   Up 7 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+postgres-replica      postgres:14                         "/bin/bash -c 'cp /iÔÇª"   postgres-replica      7 minutes ago   Up 7 minutes             0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp
+toxiproxy             ghcr.io/shopify/toxiproxy:2.6.0     "/toxiproxy -host=0.ÔÇª"   toxiproxy             7 minutes ago   Up 7 minutes             0.0.0.0:8474->8474/tcp, [::]:8474->8474/tcp, 0.0.0.0:8666->8666/tcp, [::]:8666->8666/tcp

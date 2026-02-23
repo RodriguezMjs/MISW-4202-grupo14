@@ -1,0 +1,7 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+X-Toxiproxy-Request-Id: d6dt2jgk6a5s739k4qmg
+Date: Mon, 23 Feb 2026 04:02:22 GMT
+Content-Length: 116
+
+{"api_proxy":{"name":"api_proxy","listen":"[::]:8666","upstream":"api:5000","enabled":true,"Logger":{},"toxics":[]}}

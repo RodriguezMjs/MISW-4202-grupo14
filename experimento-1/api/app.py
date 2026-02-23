@@ -3,6 +3,7 @@ from config import DATABASE_URL
 from utils.db import init_db, get_engine
 from blueprints.items import items_bp
 from blueprints.health import health_bp
+from blueprints.payments import bp as payments_bp
 import time
 
 app = Flask(__name__)
@@ -11,7 +12,7 @@ app = Flask(__name__)
 # Register Blueprints
 app.register_blueprint(health_bp, url_prefix="/api/v1")
 app.register_blueprint(items_bp, url_prefix="/api/v1")
-
+app.register_blueprint(payments_bp, url_prefix="/api")
 
 @app.before_first_request
 def ensure_db_initialized():

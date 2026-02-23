@@ -1,0 +1,172 @@
+api-1  | [2026-02-23 03:51:54 +0000] [1] [INFO] Starting gunicorn 20.1.0
+api-1  | [2026-02-23 03:51:54 +0000] [1] [INFO] Listening at: http://0.0.0.0:5000 (1)
+api-1  | [2026-02-23 03:51:54 +0000] [1] [INFO] Using worker: sync
+api-1  | [2026-02-23 03:51:54 +0000] [7] [INFO] Booting worker with pid: 7
+api-1  | [2026-02-23 03:51:54 +0000] [8] [INFO] Booting worker with pid: 8
+api-1  | [2026-02-23 03:51:54 +0000] [9] [INFO] Booting worker with pid: 9
+api-1  | [2026-02-23 03:51:54 +0000] [10] [INFO] Booting worker with pid: 10
+api-1  | [2026-02-23 04:09:34,219] ERROR in app: Exception on /api/v1/items [GET]
+api-1  | Traceback (most recent call last):
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1965, in _exec_single_context
+api-1  |     self.dialect.do_execute(
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 921, in do_execute
+api-1  |     cursor.execute(statement, parameters)
+api-1  | psycopg2.errors.UndefinedTable: relation "items" does not exist
+api-1  | LINE 1: SELECT id, name FROM items ORDER BY id
+api-1  |                              ^
+api-1  | 
+api-1  | 
+api-1  | The above exception was the direct cause of the following exception:
+api-1  | 
+api-1  | Traceback (most recent call last):
+api-1  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 2529, in wsgi_app
+api-1  |     response = self.full_dispatch_request()
+api-1  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1825, in full_dispatch_request
+api-1  |     rv = self.handle_user_exception(e)
+api-1  |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1823, in full_dispatch_request
+api-1  |     rv = self.dispatch_request()
+api-1  |          ^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1799, in dispatch_request
+api-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/app/blueprints/items.py", line 45, in list_items
+api-1  |     rows = conn.execute(text("SELECT id, name FROM items ORDER BY id")).all()
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1412, in execute
+api-1  |     return meth(
+api-1  |            ^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+api-1  |     return connection._execute_clauseelement(
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1635, in _execute_clauseelement
+api-1  |     ret = self._execute_context(
+api-1  |           ^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+api-1  |     return self._exec_single_context(
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1984, in _exec_single_context
+api-1  |     self._handle_dbapi_exception(
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2339, in _handle_dbapi_exception
+api-1  |     raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1965, in _exec_single_context
+api-1  |     self.dialect.do_execute(
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 921, in do_execute
+api-1  |     cursor.execute(statement, parameters)
+api-1  | sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "items" does not exist
+api-1  | LINE 1: SELECT id, name FROM items ORDER BY id
+api-1  |                              ^
+api-1  | 
+api-1  | [SQL: SELECT id, name FROM items ORDER BY id]
+api-1  | (Background on this error at: https://sqlalche.me/e/20/f405)
+api-1  | [2026-02-23 04:14:49,755] ERROR in app: Exception on /api/v1/items [GET]
+api-1  | Traceback (most recent call last):
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1965, in _exec_single_context
+api-1  |     self.dialect.do_execute(
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 921, in do_execute
+api-1  |     cursor.execute(statement, parameters)
+api-1  | psycopg2.errors.UndefinedTable: relation "items" does not exist
+api-1  | LINE 1: SELECT id, name FROM items ORDER BY id
+api-1  |                              ^
+api-1  | 
+api-1  | 
+api-1  | The above exception was the direct cause of the following exception:
+api-1  | 
+api-1  | Traceback (most recent call last):
+api-1  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 2529, in wsgi_app
+api-1  |     response = self.full_dispatch_request()
+api-1  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1825, in full_dispatch_request
+api-1  |     rv = self.handle_user_exception(e)
+api-1  |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1823, in full_dispatch_request
+api-1  |     rv = self.dispatch_request()
+api-1  |          ^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1799, in dispatch_request
+api-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/app/blueprints/items.py", line 45, in list_items
+api-1  |     rows = conn.execute(text("SELECT id, name FROM items ORDER BY id")).all()
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1412, in execute
+api-1  |     return meth(
+api-1  |            ^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+api-1  |     return connection._execute_clauseelement(
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1635, in _execute_clauseelement
+api-1  |     ret = self._execute_context(
+api-1  |           ^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+api-1  |     return self._exec_single_context(
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1984, in _exec_single_context
+api-1  |     self._handle_dbapi_exception(
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2339, in _handle_dbapi_exception
+api-1  |     raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1965, in _exec_single_context
+api-1  |     self.dialect.do_execute(
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 921, in do_execute
+api-1  |     cursor.execute(statement, parameters)
+api-1  | sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "items" does not exist
+api-1  | LINE 1: SELECT id, name FROM items ORDER BY id
+api-1  |                              ^
+api-1  | 
+api-1  | [SQL: SELECT id, name FROM items ORDER BY id]
+api-1  | (Background on this error at: https://sqlalche.me/e/20/f405)
+api-1  | [2026-02-23 04:15:12,710] ERROR in app: Exception on /api/v1/items [GET]
+api-1  | Traceback (most recent call last):
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1965, in _exec_single_context
+api-1  |     self.dialect.do_execute(
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 921, in do_execute
+api-1  |     cursor.execute(statement, parameters)
+api-1  | psycopg2.errors.UndefinedTable: relation "items" does not exist
+api-1  | LINE 1: SELECT id, name FROM items ORDER BY id
+api-1  |                              ^
+api-1  | 
+api-1  | 
+api-1  | The above exception was the direct cause of the following exception:
+api-1  | 
+api-1  | Traceback (most recent call last):
+api-1  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 2529, in wsgi_app
+api-1  |     response = self.full_dispatch_request()
+api-1  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1825, in full_dispatch_request
+api-1  |     rv = self.handle_user_exception(e)
+api-1  |          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1823, in full_dispatch_request
+api-1  |     rv = self.dispatch_request()
+api-1  |          ^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/flask/app.py", line 1799, in dispatch_request
+api-1  |     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/app/blueprints/items.py", line 45, in list_items
+api-1  |     rows = conn.execute(text("SELECT id, name FROM items ORDER BY id")).all()
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1412, in execute
+api-1  |     return meth(
+api-1  |            ^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py", line 515, in _execute_on_connection
+api-1  |     return connection._execute_clauseelement(
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1635, in _execute_clauseelement
+api-1  |     ret = self._execute_context(
+api-1  |           ^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+api-1  |     return self._exec_single_context(
+api-1  |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1984, in _exec_single_context
+api-1  |     self._handle_dbapi_exception(
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2339, in _handle_dbapi_exception
+api-1  |     raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1965, in _exec_single_context
+api-1  |     self.dialect.do_execute(
+api-1  |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 921, in do_execute
+api-1  |     cursor.execute(statement, parameters)
+api-1  | sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedTable) relation "items" does not exist
+api-1  | LINE 1: SELECT id, name FROM items ORDER BY id
+api-1  |                              ^
+api-1  | 
+api-1  | [SQL: SELECT id, name FROM items ORDER BY id]
+api-1  | (Background on this error at: https://sqlalche.me/e/20/f405)

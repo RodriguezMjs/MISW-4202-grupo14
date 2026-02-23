@@ -58,14 +58,10 @@ services:
     environment:
       PGPOOL_POSTGRES_USERNAME: postgres
       PGPOOL_POSTGRES_PASSWORD: postgres_pass
-
       PGPOOL_BACKEND_NODES: 0:postgres-primary:5432,1:postgres-replica:5432
-
       PGPOOL_SR_CHECK_USER: postgres
       PGPOOL_SR_CHECK_PASSWORD: postgres_pass
-
       PGPOOL_ENABLE_LOAD_BALANCING: "yes"
-
       PGPOOL_ADMIN_USERNAME: admin
       PGPOOL_ADMIN_PASSWORD: admin_pass
     volumes:
@@ -79,10 +75,19 @@ services:
         condition: service_healthy
       postgres-replica:
         condition: service_started
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "timeout 2 bash -lc 'cat < /dev/null > /dev/tcp/127.0.0.1/5432'",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 20
 
   valkey:
     image: valkey/valkey:8.0
-    container_name: valkey
+    container_name: exp1-valkey
     ports:
       - "6379:6379"
     networks:
@@ -95,7 +100,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3.11-management
-    container_name: rabbitmq
+    container_name: exp1-rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
@@ -137,7 +142,39 @@ services:
       rabbitmq:
         condition: service_healthy
       pgpool:
-        condition: service_started
+        condition: service_healthy
+
+  toxiproxy:
+    image: ghcr.io/shopify/toxiproxy:2.6.0
+    container_name: toxiproxy
+    ports:
+      - "8474:8474" # API Toxiproxy
+      - "8666:8666" # Proxy port (nginx -> api)
+    networks:
+      - travelhub-net
+
+  payment-mock:
+    build: ./payment-mock
+    container_name: payment-mock
+    ports:
+      - "8080:8080"
+    networks:
+      - travelhub-net
+
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    environment:
+      UPSTREAM_API_BASE: http://toxiproxy:8666 # IMPORTANTÍSIMO: gateway->toxiproxy->api
+      PAYMENT_BASE: http://payment-mock:8080
+      UPSTREAM_TIMEOUT_SEC: "1.5"
+      CB_FAIL_MAX: "5"
+      CB_RESET_TIMEOUT: "15"
+    networks:
+      - travelhub-net
+    depends_on:
+      - toxiproxy
+      - api
 
   
 
@@ -190,7 +227,7 @@ services:
       VALKEY_PORT: 6379
       CACHE_TTL: 30
     ports:
-      - "5001:5000" # Accesible local desde localhost:5000
+      - "5001:8090" # Accesible local desde localhost:5000
     networks:
       - travelhub-net
     depends_on:

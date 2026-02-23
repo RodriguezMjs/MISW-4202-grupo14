@@ -1,0 +1,240 @@
+(base) PS D:\MISO\Arquitecturas ágiles de software\MISW-4202-grupo14\experimento-1> docker compose up -d --build
+>> 
+#1 [internal] load local bake definitions
+#1 reading from stdin 3.52kB 0.0s done
+#1 DONE 0.0s
+
+#2 [payment-mock internal] load build definition from Dockerfile
+#2 DONE 0.0s
+
+#3 [event-consumer internal] load build definition from Dockerfile
+#3 transferring dockerfile: 340B done
+#3 DONE 0.0s
+
+#2 [payment-mock internal] load build definition from Dockerfile
+#2 transferring dockerfile: 230B done
+#2 DONE 0.1s
+
+#4 [api-gateway internal] load build definition from Dockerfile
+#4 transferring dockerfile: 200B done
+#4 DONE 0.1s
+
+#5 [gateway internal] load build definition from Dockerfile
+#5 transferring dockerfile: 272B done
+#5 DONE 0.1s
+
+#6 [api-gateway internal] load metadata for docker.io/library/nginx:alpine
+#6 ...
+
+#7 [cache-fallback-mock internal] load build definition from Dockerfile
+#7 transferring dockerfile: 230B done
+#7 DONE 0.1s
+
+#8 [cache-fallback-mock internal] load metadata for docker.io/library/python:3.11-slim
+#8 DONE 0.7s
+
+#6 [api-gateway internal] load metadata for docker.io/library/nginx:alpine
+#6 DONE 0.6s
+
+#9 [cache-fallback-mock internal] load .dockerignore
+#9 transferring context: 2B done
+#9 DONE 0.1s
+
+#10 [cache-fallback-mock 1/5] FROM docker.io/library/python:3.11-slim@sha256:0b23cfb7425d065008b778022a17b1551c82f8b4866ee5a7a200084b7e2eafbf
+#10 DONE 0.0s
+
+#11 [gateway internal] load .dockerignore
+#11 transferring context: 2B done
+#11 DONE 0.1s
+
+#12 [api-gateway internal] load .dockerignore
+#12 transferring context: 2B done
+#12 DONE 0.1s
+
+#13 [event-consumer internal] load .dockerignore
+#13 transferring context: 2B done
+#13 DONE 0.1s
+
+#14 [payment-mock internal] load .dockerignore
+#14 transferring context: 2B done
+#14 DONE 0.1s
+
+#15 [cache-fallback-mock internal] load build context
+#15 transferring context: 63B done
+#15 DONE 0.1s
+
+#10 [payment-mock 1/5] FROM docker.io/library/python:3.11-slim@sha256:0b23cfb7425d065008b778022a17b1551c82f8b4866ee5a7a200084b7e2eafbf
+#10 DONE 0.0s
+
+#16 [api-gateway 1/3] FROM docker.io/library/nginx:alpine@sha256:1d13701a5f9f3fb01aaa88cef2344d65b6b5bf6b7d9fa4cf0dca557a8d7702ba
+#16 DONE 0.0s
+
+#17 [cache-fallback-mock 4/5] RUN pip install --no-cache-dir -r requirements.txt
+#17 CACHED
+
+#18 [cache-fallback-mock 3/5] COPY requirements.txt .
+#18 CACHED
+
+#19 [gateway internal] load build context
+#19 transferring context: 63B done
+#19 DONE 0.1s
+
+#20 [cache-fallback-mock 5/5] COPY app.py .
+#20 CACHED
+
+#21 [api-gateway internal] load build context
+#21 transferring context: 64B done
+#21 DONE 0.1s
+
+#22 [event-consumer internal] load build context
+#22 transferring context: 523B done
+#22 DONE 0.1s
+
+#23 [gateway 3/5] COPY requirements.txt .
+#23 CACHED
+
+#24 [gateway 2/5] WORKDIR /app
+#24 CACHED
+
+#25 [gateway 4/5] RUN pip install --no-cache-dir -r requirements.txt
+#25 CACHED
+
+#26 [gateway 5/5] COPY app.py .
+#26 CACHED
+
+#27 [cache-fallback-mock] exporting to image
+#27 exporting layers done
+#27 writing image sha256:3b396d41314d546a59f4945e7729d05f54096f1610ba13e86037423043b13e85 done
+#27 naming to docker.io/library/experimento-1-cache-fallback-mock 0.0s done
+#27 DONE 0.1s
+
+#28 [api-gateway 2/3] COPY nginx.conf /etc/nginx/nginx.conf
+#28 CACHED
+
+#29 [api-gateway 3/3] COPY default.conf /etc/nginx/conf.d/default.conf
+#29 CACHED
+
+#30 [payment-mock internal] load build context
+#30 transferring context: 63B done
+#30 DONE 0.0s
+
+#31 [api 5/9] COPY app.py ./
+#31 CACHED
+
+#32 [api 4/9] RUN pip install --no-cache-dir -r requirements.txt
+#32 CACHED
+
+#33 [api 8/9] COPY utils ./utils
+#33 CACHED
+
+#34 [api 6/9] COPY config.py ./
+#34 CACHED
+
+#35 [api 7/9] COPY blueprints ./blueprints
+#35 CACHED
+
+#36 [api 3/9] COPY requirements.txt ./
+#36 CACHED
+
+#37 [api 9/9] COPY rabbitmq ./rabbitmq
+#37 CACHED
+
+#38 [payment-mock 3/5] COPY requirements.txt .
+#38 CACHED
+
+#24 [payment-mock 2/5] WORKDIR /app
+#24 CACHED
+
+#39 [payment-mock 4/5] RUN pip install --no-cache-dir -r requirements.txt
+#39 CACHED
+
+#40 [payment-mock 5/5] COPY app.py .
+#40 CACHED
+
+#41 [gateway] exporting to image
+#41 exporting layers done
+#41 writing image sha256:e2f4be5734e9e5fff7505215843f6cfabe6817ea7233d25d19b116f44ab01b21 0.0s done
+#41 naming to docker.io/library/experimento-1-gateway done
+#41 DONE 0.1s
+
+#42 [payment-mock] exporting to image
+#42 exporting layers done
+#42 writing image sha256:8dd4786cc828bf09fcd50a914b9013011d0a43e8d1f3cd96bd2b3c6a28771902 done
+#42 naming to docker.io/library/experimento-1-payment-mock
+#42 ...
+
+#43 [event-consumer] exporting to image
+#43 exporting layers done
+#43 writing image sha256:7acb7730fc0e5a3cef16321656eecac923cfb4a9cde9ecc67e5f9ad3fd5cebd0 0.0s done
+#43 naming to docker.io/library/experimento-1-event-consumer 0.0s done
+#43 DONE 0.2s
+
+#42 [payment-mock] exporting to image
+#42 naming to docker.io/library/experimento-1-payment-mock 0.0s done
+#42 DONE 0.2s
+
+#44 [api-gateway] exporting to image
+#44 exporting layers done
+#44 writing image sha256:f8175561b541883e256e69c00fc83a06e60b8039b6d74611ff28962f58df638c 0.0s done
+#44 naming to docker.io/library/experimento-1-api-gateway 0.0s done
+#44 DONE 0.2s
+
+#45 [api] exporting to image
+#45 exporting layers done
+#45 writing image sha256:a52a7970275e799670c1516511c96186dd38e0a12080d0f24ca4b9cac776397c 0.0s done
+#45 naming to docker.io/library/experimento-1-api 0.0s done
+#45 DONE 0.2s
+
+#46 [gateway] resolving provenance for metadata file
+#46 DONE 0.2s
+
+#47 [cache-fallback-mock] resolving provenance for metadata file
+#47 DONE 0.2s
+
+#48 [api-gateway] resolving provenance for metadata file
+#48 DONE 0.1s
+
+#49 [payment-mock] resolving provenance for metadata file
+#49 DONE 0.0s
+
+#50 [api] resolving provenance for metadata file
+#50 DONE 0.2s
+
+#51 [event-consumer] resolving provenance for metadata file
+#51 DONE 0.0s
+[+] up 21/21
+ ✔ Image experimento-1-cache-fallback-mock Built                                                                                                                                        2.9ss
+ ✔ Image experimento-1-event-consumer      Built                                                                                                                                        2.9ss
+ ✔ Image experimento-1-api-gateway         Built                                                                                                                                        2.9ss
+ ✔ Image experimento-1-payment-mock        Built                                                                                                                                        2.9ss
+ ✔ Image experimento-1-gateway             Built                                                                                                                                        2.9ss
+ ✔ Image experimento-1-api                 Built                                                                                                                                        2.9ss
+ ✔ Network travelhub-net                   Created                                                                                                                                      0.0ss
+ ✔ Volume experimento-1_replica_data       Created                                                                                                                                      0.0ss
+ ✔ Volume experimento-1_primary_data       Created                                                                                                                                      0.0ss
+ ✔ Container exp1-rabbitmq                 Healthy                                                                                                                                      11.9s
+ ✔ Container toxiproxy                     Created                                                                                                                                      0.1ss
+ ✔ Container payment-mock                  Created                                                                                                                                      0.1ss
+ ✔ Container exp1-valkey                   Healthy                                                                                                                                      11.1s
+ ✔ Container postgres-primary              Healthy                                                                                                                                      11.9s
+ ✔ Container event-consumer                Created                                                                                                                                      0.1ss
+ ✔ Container postgres-replica              Created                                                                                                                                      0.1ss
+ ✔ Container pgpool                        Healthy                                                                                                                                      16.2s
+ ✔ Container cache-fallback-mock           Created                                                                                                                                      0.1ss
+ ✔ Container experimento-1-api-1           Created                                                                                                                                      0.1ss
+ ✔ Container gateway                       Created                                                                                                                                      0.1ss
+ ✔ Container api-gateway                   Created                                                                                                                                      0.1ss
+(base) PS D:\MISO\Arquitecturas ágiles de software\MISW-4202-grupo14\experimento-1> docker  compose ps
+NAME                  IMAGE                               COMMAND                  SERVICE               CREATED         STATUS                   PORTS
+api-gateway           experimento-1-api-gateway           "/docker-entrypoint.…"   api-gateway           3 minutes ago   Up 2 minutes (healthy)   0.0.0.0:80->80/tcp, [::]:80->80/tcp        
+cache-fallback-mock   experimento-1-cache-fallback-mock   "gunicorn -b 0.0.0.0…"   cache-fallback-mock   3 minutes ago   Up 2 minutes             0.0.0.0:5001->5000/tcp, [::]:5001->5000/tcp
+event-consumer        experimento-1-event-consumer        "python -m rabbitmq.…"   event-consumer        3 minutes ago   Up 2 minutes             5000/tcp
+exp1-rabbitmq         rabbitmq:3.11-management            "docker-entrypoint.s…"   rabbitmq              3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:5672->5672/tcp, [::]:5672->5672/tcp, 0.0.0.0:15672->15672/tcp, [::]:15672->15672/tcp
+exp1-valkey           valkey/valkey:8.0                   "docker-entrypoint.s…"   valkey                3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:6379->6379/tcp, [::]:6379->6379/tcp
+experimento-1-api-1   experimento-1-api                   "gunicorn -w 4 -b 0.…"   api                   3 minutes ago   Up 2 minutes             5000/tcp
+gateway               experimento-1-gateway               "gunicorn -b 0.0.0.0…"   gateway               3 minutes ago   Up 2 minutes             7000/tcp
+payment-mock          experimento-1-payment-mock          "gunicorn -b 0.0.0.0…"   payment-mock          3 minutes ago   Up 3 minutes             0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+pgpool                bitnamilegacy/pgpool:4.6.3          "/opt/bitnami/script…"   pgpool                3 minutes ago   Up 2 minutes (healthy)   0.0.0.0:5434->5432/tcp, [::]:5434->5432/tcp
+postgres-primary      postgres:14                         "docker-entrypoint.s…"   postgres-primary      3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+postgres-replica      postgres:14                         "/bin/bash -c 'cp /i…"   postgres-replica      3 minutes ago   Up 2 minutes             0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp
+toxiproxy             ghcr.io/shopify/toxiproxy:2.6.0     "/toxiproxy -host=0.…"   toxiproxy             3 minutes ago   Up 3 minutes             0.0.0.0:8474->8474/tcp, [::]:8474->8474/tcp, 0.0.0.0:8666->8666/tcp, [::]:8666->8666/tcp
