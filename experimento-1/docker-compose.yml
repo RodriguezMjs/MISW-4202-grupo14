@@ -53,7 +53,7 @@ services:
       ]
   #Balancea las cargas entre BD primary y réplica
   pgpool:
-    image: docker.io/bitnamilegacy/pgpool:4.6.3-debian-12-r0
+    image: bitnamilegacy/pgpool:4.6.3
     container_name: pgpool
     environment:
       PGPOOL_POSTGRES_USERNAME: postgres
@@ -64,6 +64,8 @@ services:
       PGPOOL_ENABLE_LOAD_BALANCING: "yes"
       PGPOOL_ADMIN_USERNAME: admin
       PGPOOL_ADMIN_PASSWORD: admin_pass
+    volumes:
+      - ./pgpool/pgpool.conf:/opt/bitnami/pgpool/conf/pgpool.conf
     ports:
       - "5434:5432"
     networks:
@@ -210,27 +212,27 @@ services:
   # CACHE FALLBACK MOCK - demuestra la táctica de cache
   # Lee desde postgres-replica, usa valkey como cache
   # comentado mientras se termina el mock
-  # cache-fallback-mock:
-  #   build: ./cache-fallback-mock
-  #   container_name: cache-fallback-mock
-  #   environment:
-  #     DB_HOST: postgres-replica
-  #     DB_PORT: 5432
-  #     DB_NAME: travelhub
-  #     DB_USER: postgres
-  #     DB_PASSWORD: postgres_pass
-  #     VALKEY_HOST: valkey
-  #     VALKEY_PORT: 6379
-  #     CACHE_TTL: 30
-  #   ports:
-  #     - "5000:5000" # Accesible local desde localhost:5000
-  #   networks:
-  #     - travelhub-net
-  #   depends_on:
-  #     postgres-replica:
-  #       condition: service_started
-  #     valkey:
-  #       condition: service_healthy
+  cache-fallback-mock:
+    build: ./cache-fallback-mock
+    container_name: cache-fallback-mock
+    environment:
+      DB_HOST: postgres-replica
+      DB_PORT: 5432
+      DB_NAME: travelhub
+      DB_USER: postgres
+      DB_PASSWORD: postgres_pass
+      VALKEY_HOST: valkey
+      VALKEY_PORT: 6379
+      CACHE_TTL: 30
+    ports:
+      - "5001:5000" # Accesible local desde localhost:5000
+    networks:
+      - travelhub-net
+    depends_on:
+      postgres-replica:
+        condition: service_started
+      valkey:
+        condition: service_healthy
 
 networks:
   travelhub-net:
