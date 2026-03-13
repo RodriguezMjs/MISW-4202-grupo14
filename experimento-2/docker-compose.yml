@@ -1,0 +1,30 @@
+services:
+  auth:
+    build: ./auth
+    ports:
+      - "5002:5002"
+    environment:
+      JWT_SECRET: super-secret-key
+      JWT_ALGORITHM: HS256
+      JWT_ISSUER: auth-service
+      JWT_AUDIENCE: travelhub-clients
+      JWT_EXP_MINUTES: "15"
+
+  api:
+    build: ./api
+    ports:
+      - "5001:5001"
+
+  gateway:
+    build: ./gateway
+    ports:
+      - "7001:7001"
+    depends_on:
+      - auth
+      - api
+    environment:
+      UPSTREAM_API_BASE: http://api:5001
+      JWT_SECRET: super-secret-key
+      JWT_ALGORITHM: HS256
+      JWT_ISSUER: auth-service
+      JWT_AUDIENCE: travelhub-clients
