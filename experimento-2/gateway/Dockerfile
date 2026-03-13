@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Exponer puerto del gateway
-EXPOSE 7000
+EXPOSE 7001
 
 # Ejecutar aplicación
 CMD ["gunicorn", "-b", "0.0.0.0:7001", "app:app"]
