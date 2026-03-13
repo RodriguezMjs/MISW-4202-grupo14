@@ -133,12 +133,7 @@ docker compose logs gateway --tail=100
 docker compose logs api --tail=100
 
 
----
-
-## Bloque listo para `README.md` — Punto 9
-
-```md
-## 9. Resultados esperados
+Resultados esperados
 
 | Caso | Tipo de solicitud | Resultado esperado |
 |------|-------------------|-------------------|
