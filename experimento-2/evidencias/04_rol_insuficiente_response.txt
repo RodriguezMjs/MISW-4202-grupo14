@@ -1,0 +1,3 @@
+HTTP 403 Forbidden
+{"actual_role":"viewer","error":"FORBIDDEN","message":"Token does not have the required role","required_role":"admin"}
+

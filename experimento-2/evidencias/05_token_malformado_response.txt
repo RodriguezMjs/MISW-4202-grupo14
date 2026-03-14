@@ -1,0 +1,3 @@
+HTTP 401 Unauthorized
+{"error":"MALFORMED_TOKEN","message":"JWT is malformed"}
+

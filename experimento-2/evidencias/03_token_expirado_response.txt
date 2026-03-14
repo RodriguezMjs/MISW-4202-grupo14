@@ -1,0 +1,3 @@
+HTTP 401 Unauthorized
+{"error":"TOKEN_EXPIRED","message":"JWT is expired"}
+

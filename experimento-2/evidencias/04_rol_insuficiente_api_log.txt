@@ -1,0 +1,4 @@
+api-1  | [2026-03-14 04:15:40 +0000] [1] [INFO] Starting gunicorn 21.2.0
+api-1  | [2026-03-14 04:15:40 +0000] [1] [INFO] Listening at: http://0.0.0.0:5001 (1)
+api-1  | [2026-03-14 04:15:40 +0000] [1] [INFO] Using worker: sync
+api-1  | [2026-03-14 04:15:40 +0000] [7] [INFO] Booting worker with pid: 7

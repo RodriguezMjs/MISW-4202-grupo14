@@ -1,0 +1,3 @@
+HTTP 401 Unauthorized
+{"error":"INVALID_SIGNATURE","message":"JWT signature is invalid"}
+

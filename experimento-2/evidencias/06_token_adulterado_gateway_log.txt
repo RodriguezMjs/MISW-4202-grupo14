@@ -1,0 +1,20 @@
+gateway-1  | [2026-03-14 04:15:40 +0000] [1] [INFO] Starting gunicorn 22.0.0
+gateway-1  | [2026-03-14 04:15:40 +0000] [1] [INFO] Listening at: http://0.0.0.0:7001 (1)
+gateway-1  | [2026-03-14 04:15:40 +0000] [1] [INFO] Using worker: sync
+gateway-1  | [2026-03-14 04:15:40 +0000] [7] [INFO] Booting worker with pid: 7
+gateway-1  | [2026-03-14 04:56:40,252] WARNING in app: [JWT] missing or invalid Authorization header
+gateway-1  | [2026-03-14 04:58:45,970] WARNING in app: [JWT] missing or invalid Authorization header
+gateway-1  | [2026-03-14 05:00:14,210] WARNING in app: [JWT] missing or invalid Authorization header
+gateway-1  | [2026-03-14 05:00:28,911] WARNING in app: [JWT] missing or invalid Authorization header
+gateway-1  | [2026-03-14 05:01:42,917] WARNING in app: [JWT] missing or invalid Authorization header
+gateway-1  | [2026-03-14 05:02:17,031] WARNING in app: [JWT] rejected: forbidden role=viewer, required=admin
+gateway-1  | [2026-03-14 05:07:15,446] WARNING in app: [JWT] missing or invalid Authorization header
+gateway-1  | [2026-03-14 05:07:18,744] WARNING in app: [JWT] missing or invalid Authorization header
+gateway-1  | [2026-03-14 05:12:53,152] WARNING in app: [JWT] missing or invalid Authorization header
+gateway-1  | [2026-03-14 05:12:56,775] WARNING in app: [JWT] missing or invalid Authorization header
+gateway-1  | [2026-03-14 05:14:05,880] WARNING in app: [JWT] missing or invalid Authorization header
+gateway-1  | [2026-03-14 05:15:27,245] WARNING in app: [JWT] missing or invalid Authorization header
+gateway-1  | [2026-03-14 05:16:19,823] WARNING in app: [JWT] rejected: token expired
+gateway-1  | [2026-03-14 05:16:44,695] WARNING in app: [JWT] rejected: forbidden role=viewer, required=admin
+gateway-1  | [2026-03-14 05:17:03,618] WARNING in app: [JWT] rejected: malformed token
+gateway-1  | [2026-03-14 05:17:23,376] WARNING in app: [JWT] rejected: invalid signature
